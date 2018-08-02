@@ -1,0 +1,95 @@
+<h2>Create new FTP {{suppOrCusLabel}} site</h2>
+<div class="container">
+	<form name="createSiteForm" ng-submit="addNewSite(createSiteForm)"
+		confirm-redir-if-changed-directive novalidate>
+		<ftp-site-dropdownlist-directive></ftp-site-dropdownlist-directive>
+		<br>
+
+		<div class="row">
+			<div class="col-xs-2">
+				<label for="host">Host</label>
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" placeholder="Input host"
+					ng-model="host" name="host" required> <span style = "color:red"
+					ng-show="createSiteForm.host.$dirty">{{checkHost(host)}}</span>
+			</div>
+			<div class="col-xs-1"></div>
+			<div class="col-xs-2">
+				<label for="path">Path</label>
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" placeholder="Input path"
+					ng-model="path" name="path" required> <span style = "color:red"
+					ng-show="createSiteForm.path.$dirty">{{checkPath(path)}}</span>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-xs-2">
+				<label for="username">Username</label>
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" placeholder="Input username"
+					ng-model="username" name="username" required> <span style = "color:red"
+					ng-show="createSiteForm.username.$dirty">{{checkUsername(username)}}</span>
+			</div>
+			<div class="col-xs-1"></div>
+			<div class="col-xs-2">
+				<label for="password">Password</label>
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" placeholder="Input password"
+					ng-model="password" name="password" required> <span style = "color:red"
+					ng-show="createSiteForm.password.$dirty">{{checkPassword(password)}}</span>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-xs-2">
+				<label for="port">Port</label>
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" placeholder="Input port"
+					ng-model="port" name="port"> <span style = "color:red"
+					ng-show="createSiteForm.port.$dirty">{{checkPort(port)}}</span>
+			</div>
+			<div class="col-xs-1"></div>
+			<div class="col-xs-2">
+				<label for="note">Note</label>
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" placeholder="Input note"
+					ng-model="note" name="note">
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+
+		<br>
+		<div class="form-group">
+			<div class="col-xs-offset-4 col-xs-4">
+				<button type="submit" class="btn btn-primary"
+					ng-disabled="createSiteForm.$invalid">
+					Create <i class="fa fa-plus"></i>
+				</button>
+				<button type="reset" class="btn btn-primary">
+					Clear <i class="fa fa-eraser"></i>
+				</button>
+				<button type="button" class="btn btn-primary"
+					ng-disabled="createSiteForm.$invalid"
+					ng-click="testConnection(createSiteForm)">
+					Test connection <i class="fa fa-question-circle"></i>
+				</button>
+			</div>
+		</div>
+		<div ng-if="!loaded">
+			<img src="assets/img/loader.gif" />
+		</div>
+	</form>
+</div>

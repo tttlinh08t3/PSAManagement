@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<security-domain flushOnSessionInvalidation="true">java:/jaas/YMCASecurity</security-domain>
+</jboss-web>
+
+
+<!-- <jboss-web>
+    <security-domain flushOnSessionInvalidation="true">java:/jaas/YMCASecurity</security-domain>
+    <valve>
+        <class-name>org.jboss.resteasy.skeleton.key.as7.OAuthAuthenticationServerValve</class-name>
+    </valve>
+</jboss-web> -->

@@ -1,0 +1,87 @@
+<h2>View all FTP {{suppOrCusLabel}} sites</h2>
+<div class="container">
+	<ftp-site-dropdownlist-directive></ftp-site-dropdownlist-directive>
+	<br>	
+	<div class="row">
+	<table ng-table="tableParams"
+		class="table ng-table-resizable-columns" show-filter="false">
+		<tr ng-repeat="site in $data">
+			<td data-title="suppOrCusLabel" header-class="'text-left'"
+				sortable="'supplier'" >{{site.name}}</td>
+
+			<td data-title="'Host'" header-class="'text-left'" sortable="'host'"
+				filter="{ 'host': 'text' }"><span editable-text="site.host"
+				e-name="host" e-form="rowform" e-required
+				onbeforesave="checkHost($data)"> {{site.host}} </span></td>
+
+			<td data-title="'Port'" header-class="'text-left'" sortable="'port'"
+				filter="{ 'port': 'text' }"><span editable-text="site.port"
+				e-name="port" e-form="rowform" e-required
+				onbeforesave="checkPort($data)"> {{site.port}} </span></td>
+
+			<td data-title="'Protocol'" header-class="'text-left'"
+				sortable="'protocol'" filter="{ 'protocol': 'text' }"><span
+				e-name="protocol" e-form="rowform" editable-select="site.protocol"
+				e-ng-options="p for p in protocols"> {{site.protocol}} </span></td>
+
+			<td data-title="'Path'" header-class="'text-left'" sortable="'path'"
+				filter="{ 'path': 'text' }"><span editable-text="site.path"
+				e-name="path" e-form="rowform" e-required
+				onbeforesave="checkPath($data)"> {{site.path}} </span></td>
+
+			<td data-title="'Up'" header-class="'text-left'"
+				sortable="'up'" filter="{ 'up': 'text' }">{{
+				site.up }}</td>
+
+			<td data-title="'Report Type'" header-class="'text-left'"
+				sortable="'reporttype.reportType'"><span e-name="reporttype"
+				e-form="rowform" editable-select="site.reporttype.id"
+				e-ng-options="rp.id as rp.reportType for rp in allReporttypes">
+					{{showReportType(site)}}</span></td>
+
+			<td data-title="'Username'" header-class="'text-left'"
+				sortable="'username'" filter="{ 'username': 'text' }"><span
+				editable-text="site.ftpuser.username" e-name="username"
+				e-form="rowform" e-required onbeforesave="checkUsername($data)">{{site.ftpuser.username}}</span>
+			</td>
+
+			<td data-title="'Password'" header-class="'text-left'"
+				sortable="'password'" filter="{ 'password': 'text' }"><span
+				editable-text="site.ftpuser.password" e-name="password"
+				e-form="rowform" e-required onbeforesave="checkPassword($data)">{{site.ftpuser.password}}</span></td>
+
+			<td data-title="'Note'" header-class="'text-left'" sortable="'note'"
+				filter="{ 'note': 'text' }"><span editable-text="site.note"
+				e-name="note" e-form="rowform" e-required>{{site.note}}</span></td>
+
+			<td style="width: 70px">
+				<form confirm-redir-if-xedit-changed-directive editable-form
+					name="rowform" onbeforesave="editSelectedRow($data, site.id)"
+					ng-show="rowform.$visible" class="form-buttons form-inline buttons">
+					<button title="Save" type="submit" class="btn btn-grey btn-xs"
+						ng-disabled="rowform.$waiting">
+						<i class="fa fa-floppy-o"></i>
+					</button>
+					<button title="Cancel" type="button" class="btn btn-grey btn-xs"
+						ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()">
+						<i class="fa fa-ban"></i>
+					</button>
+				</form>
+				<div class="buttons" ng-show="!rowform.$visible ">
+					<button title="Edit" class="btn btn-primary btn-xs"
+						ng-click="rowform.$show()">
+						<i class="fa fa-pencil-square-o"></i>
+					</button>
+				</div> <img class="action_btn" src="assets/img/loader.gif" ng-show="" />
+			</td>
+
+		</tr>
+		<tr ng-if="!sites_loaded">
+			<td align="center" colspan="10"><img src="assets/img/loader.gif" /></td>
+		</tr>
+		<tr ng-if="tableParams.total() == 0 && sites_loaded">
+			<td>No data found</td>
+		</tr>
+	</table>
+	</div>
+</div>

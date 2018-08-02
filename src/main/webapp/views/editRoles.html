@@ -1,0 +1,66 @@
+<h2>Assign Roles For User: {{userName}}</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-md-5">
+			<h3>Available Roles</h3>
+			<div style="width:100%;height:5px;display:block;"/>
+			<table ng-table="availabeRolesTable" class="table ng-table-resizable-columns"
+				show-filter="false">
+				<tr ng-repeat="role in $data">
+       				<td><input type="checkbox" ng-model="selectedAvailableRoles[role.id]"></td>
+					<td data-title="'Role Name'" header-class="'text-left'"
+						sortable="'name'" >{{role.name}}</td>
+		
+					<td data-title="'Description'" header-class="'text-left'"
+						sortable="'description'">{{role.description}}</td>
+				</tr>
+				<tr ng-if="!availableRoles_loaded">
+					<td align="center" colspan="10"><img src="assets/img/loader.gif" /></td>
+				</tr>
+				<tr ng-if="availabeRolesTable.total() == 0 && availableRoles_loaded">
+					<td>No roles to assign</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-1" style="text-align:center;">
+			<div style="width:100%;height:160px;display:block;"/>
+			<button ng-click="assign()" class="btn btn-primary" style="width:60px;"><span class="fa fa-forward"></span>
+			</button>
+			<div style="width:100%;height:5px;display:block;"/>
+			<button ng-click="remove()" class="btn btn-primary" style="width:60px;"><span class="fa fa-backward"></span></button>
+		</div>
+		<div class="col-md-6">
+			<h3>Assigned Roles</h3>
+			<div style="width:100%;height:5px;display:block;"/>
+			<table ng-table="assignedRolesTable" class="table ng-table-resizable-columns"
+				show-filter="false">
+				<tr ng-repeat="role in $data">
+					<td><input type="checkbox" ng-model="selectedAssignedRoles[role.id]"></td>
+					<td data-title="'Role Name'" header-class="'text-left'"
+						sortable="'name'" >{{role.name}}</td>
+		
+					<td data-title="'Description'" header-class="'text-left'"
+						sortable="'description'">{{role.description}}</td>
+				</tr>
+				<tr ng-if="!assignedRoles_loaded">
+					<td align="center" colspan="10"><img src="assets/img/loader.gif" /></td>
+				</tr>
+				<tr ng-if="assignedRolesTable.total() == 0 && assignedRoles_loaded">
+					<td>No roles assigned</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<a class="btn btn-primary" href="#/usersAndRoles">
+			<i class="fa fa-arrow-left"/> Back</a>
+		</div>
+		<div class="col-md-2">
+			<button ng-click="saveUpdate()" class="btn btn-primary" ng-disabled="saveStatus == 'saving'">
+			Save Update <i ng-if="saveStatus == '' || saveStatus == 'saved'" class="fa fa-floppy-o"></i>
+			<img ng-if="saveStatus == 'saving'" src="assets/img/loader.gif"></img>
+			</button>
+		</div>
+	</div>
+</div>

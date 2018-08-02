@@ -1,0 +1,84 @@
+<div class="container">
+	<form name="schedulerDetailForm"
+		ng-submit="update(schedulerDetailForm)"
+		confirm-redir-if-changed-directive novalidate>
+		<div class="row">
+			<div class="col-xs-1">
+				<label>Name</label>
+			</div>
+			<div class="col-xs-6">
+				<label>{{scheduler_name}}</label>
+			</div>
+		</div>
+
+		<br>
+		<div class="row">
+			<div class="col-xs-1">
+				<label>Started</label>
+			</div>
+			<div class="col-xs-3">
+				<label for="stared">{{startedCol}} </label>
+			</div>
+		</div>
+
+		<br>
+		<div class="row">
+			<div class="col-xs-1">
+				<label for="interval">Interval</label>
+			</div>
+			<div class="col-xs-3">
+				<select id="interval" class="form-control" ng-model="interval"
+					ng-options="item for item in intervalTypes"
+					ng-disabled="schedulerDetail.started=='YES'">
+				</select>
+			</div>
+		</div>
+		<br>
+
+		<div class="row">
+			<div class="col-xs-1">
+				<label for="startedDate">Start date</label>
+			</div>
+			<div class="col-xs-6">
+				<div class="form-group">
+					<div class='input-group date' id='datetimepickerTo'>
+						<input type='text' class="form-control" datetimepicker-directive
+							ng-model="startedDate"
+							ng-disabled="schedulerDetail.started=='YES'" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-xs-1">
+				<label>Control</label>
+			</div>
+			<div class="col-xs-1">
+				<button type="button" ng-click="start()"
+					ng-disabled="schedulerDetail.started=='YES'"
+					class="btn btn-primary">Start</button>
+			</div>
+			<div class="col-xs-1">
+				<button type="button" ng-click="stop()"
+					ng-disabled="schedulerDetail.started=='NO'" class="btn btn-grey">Stop</button>
+			</div>
+			<div class="col-xs-1" ng-if="loaded">
+				<img
+					src="assets/img/loader.gif" />
+			</div>
+		</div>
+		<br>
+		<div class="form-group">
+			<div class="col-xs-offset-4 col-xs-4">
+				<button type="button"  ng-click="update()" class="btn btn-primary"
+					ng-disabled="schedulerDetailForm.$invalid || schedulerDetail.started=='YES'">
+					Update <i class="fa fa-plus"></i>
+				</button>
+				<a class="btn btn-primary" href="#/{{link}}"> <i
+					class="fa fa-arrow-left" /> Back
+				</a>
+			</div>
+		</div>
+	</form>
+</div>

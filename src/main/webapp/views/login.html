@@ -1,0 +1,35 @@
+	<div>
+		<div class="col-md-3 col-md-offset-5">
+			<br> <br> <br>
+		
+			<form name="form" ng-submit="form.$valid && login()"
+				class="form-signin"	 method=post novalidate>
+				
+				<h1 class="form-signin-heading">Please login</h1>
+				<div class="form-group"
+					ng-class="{ 'has-error': form.$submitted && form.username.$invalid }">
+					<label for="username">Username</label> <input type="text"
+						name="j_username" class="form-control" ng-model="username"
+						required />
+					<div ng-messages="form.$submitted && form.username.$error"
+						class="help-block">
+						<div ng-message="required">Username is required</div>
+					</div>
+				</div>
+				<div class="form-group"
+					ng-class="{ 'has-error': form.$submitted && form.password.$invalid }">
+					<label for="password">Password</label> <input type="password"
+						name="j_password" class="form-control" ng-model="password"
+						required />
+					<div ng-messages="form.$submitted && form.password.$error"
+						class="help-block">
+						<div ng-message="required">Password is required</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<button ng-disabled="dataLoading" class="btn btn-primary">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
+

@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-xs-1"></div>
+	<div class="col-xs-2">
+		<label for="ftpsiteType">Scheduler type:</label>
+	</div>
+	<div class="col-xs-3">
+		<select id="ftpsiteType" class="form-control" ng-model="ftpsiteType"
+			ng-options="item for item in ftpsiteTypes">
+			<option value="">All ftp site schedulers</option>
+		</select>
+	</div>
+</div>
+<br>
+<div class="container">
+	<table ng-table="tableParams1" class="table ng-table-resizable-columns"
+		show-filter="false">
+		<tr ng-repeat="scheduler in $data">
+			<td data-title="'FTP site connection'" header-class="'text-left'"
+				sortable="'name'" filter="{ 'name': 'text' }"><a
+				href="#/{{detailLink}}/{{scheduler.name}}" ng-click="sendData(scheduler)">{{scheduler.name}}</a>
+			</td>
+			<td data-title="'Path'" header-class="'text-left'" sortable="'path'"
+				filter="{ 'path': 'text' }">{{scheduler.path}}</td>
+			<td data-title="'Started'" header-class="'text-left'"
+				sortable="'started'" filter="{ 'started': 'text' }"><span
+				e-name="started" e-form="rowform"
+				editable-select="scheduler.started"
+				e-ng-options="s for s in startedOptions">
+					{{scheduler.started}} </span></td>
+
+			<td data-title="'Interval'" header-class="'text-left'"
+				sortable="'interval'" filter="{ 'interval': 'text' }"><span
+				editable-text="scheduler.interval" e-name="interval"
+				e-form="rowform"> {{scheduler.interval}} </span></td>
+
+			<td data-title="'Start Date'" header-class="'text-left'"
+				sortable="'startDate'" filter="{ 'startDate': 'text' }"><span
+				editable-text="scheduler.startDate" e-name="startDate"
+				e-form="rowform"> {{scheduler.startDate}} </span></td>
+
+			<td style="width: 100px">
+				<form class="form-buttons form-inline buttons">
+					<button type="submit" ng-click="start(scheduler,schedulerType)"
+						class="btn btn-primary btn-xs"
+						ng-disabled="scheduler.started=='YES'">Start</button>
+					<button type="button" ng-click="stop(scheduler,schedulerType)"
+						ng-disabled="scheduler.started=='NO'" class="btn btn-grey btn-xs">Stop</button>
+				</form>
+			</td>
+		</tr>
+		<tr ng-if="!schedulers_loaded">
+			<td align="center" colspan="10"><img src="assets/img/loader.gif" /></td>
+		</tr>
+		<tr ng-if="tableParams1.total() == 0 && schedulers_loaded">
+			<td>No data found</td>
+		</tr>
+	</table>
+
+</div>

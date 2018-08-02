@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-xs-2">
+		<label for="suppOrCus">{{suppOrCusLabel}}</label>
+	</div>
+	<div class="col-xs-3">
+		<select id="suppOrCus" class="form-control" ng-model="suppOrCus"
+			ng-options="item for item in suppliersOrCustomers">
+			<option value="">{{allCusOrSuppLabel}}</option>
+		</select> <span style="color: red" ng-show="isSuppOrCusSelected">Please
+			select {{suppOrCusLabel}}</span>
+	</div>
+	<div class="col-xs-1"></div>
+	<div class="col-xs-2">
+		<label for="protocol">Protocol</label>
+	</div>
+	<div class="col-xs-3">
+		<select id="protocol" class="form-control" ng-model="protocol"
+			ng-options="item for item in protocols">
+			<option value="">All protocols</option>
+		</select> <span style="color: red" ng-show="isProtocolSelected">Please
+			select protocol</span>
+	</div>
+	<div class="col-xs-1"></div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-xs-2">
+		<label for="category">Category</label>
+	</div>
+	<div class="col-xs-3">
+		<select id="category" class="form-control"
+			ng-model="selectedCategoryId"
+			ng-change="onChangeCategory(selectedCategoryId)"
+			ng-options="item.id as item.categoryType for item in allCategories">
+			<option value="">All categories</option>
+		</select>
+	</div>
+	<div class="col-xs-1"></div>
+	<div class="col-xs-2">
+		<label for="report">Report Type</label>
+	</div>
+	<div class="col-xs-3">
+		<select id="report" class="form-control" ng-model="reportType"
+			ng-options="item.id as item.reportType for item in reporttypes">
+			<option value="">All report types</option>
+		</select> <span style="color: red" ng-show="isReporttypeSelected">Please
+			select report type</span>
+	</div>
+	<div class="col-xs-1"></div>
+</div>

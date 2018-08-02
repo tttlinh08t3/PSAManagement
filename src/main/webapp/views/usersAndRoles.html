@@ -1,0 +1,44 @@
+<h2>Users and Roles</h2>
+<div class="container">
+	
+	<div style="width:100%;height:10px;display:block;"/>
+	<div class="form-inline">
+		<div class="row">
+		 	<div class="col-md-3">
+	            <label class="label-like" for="entries-per-page">Show</label>
+	            <select id="entries-per-page" class="form-control text-right  input-sm" ng-model="limitRows" 
+	            	ng-init="limitRows = '10'" ng-change="changeRowsPerPage()" >
+	                <option value="10">10</option>
+	                <option value="25">25</option>
+	                <option value="50">50</option>
+	                <option value="100">100</option>
+	                <option value="250">250</option>
+	                <option value="500">500</option>
+	                <option value="1000">1000</option>
+	            </select>
+	            <label class="label-like" for="entries-per-page">entries</label>
+       		</div>
+       	</div>
+	</div>
+	<div style="width:100%;height:5px;display:block;"/>
+	<table ng-table="tableParams1" class="table ng-table-resizable-columns"
+		show-filter="true">
+		<tr ng-repeat="user in $data">
+			<td data-title="'User Name'" header-class="'text-left'"
+				sortable="'userName'" filter="{ 'userName': 'text' }">
+				<a href="#/editRoles/{{user.userName}}">{{user.userName}}</a></td>
+
+			<td data-title="'Email Address'" header-class="'text-left'"
+				sortable="'email'" filter="{ 'email': 'text' }">{{user.email}}</td>
+
+			<td data-title="'Description'" header-class="'text-left'"
+				sortable="'started'">{{user.description}}</td>
+		</tr>
+		<tr ng-if="!users_loaded">
+			<td align="center" colspan="10"><img src="assets/img/loader.gif" /></td>
+		</tr>
+		<tr ng-if="tableParams1.total() == 0 && users_loaded">
+			<td>No data found</td>
+		</tr>
+	</table>
+</div>

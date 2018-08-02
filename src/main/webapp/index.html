@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="PSAMApp">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eSilicon PSAM</title>
+
+<link href="assets/font-awesome-4.4.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="assets/jQuery.mmenu-master/dist/core/css/jquery.mmenu.all.css" />
+<link rel="stylesheet"
+	href="assets/bootstrap-3.3.6-dist/css/bootstrap-theme-internal.css" />
+<link rel="stylesheet" href="assets/jquery/jquery-ui.css" />
+
+<link href="assets/angular-xeditable-0.1.8/css/xeditable.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet"
+	href="assets/ng-table-master/dist/ng-table.min.css" />
+<link rel="stylesheet"
+	href="assets/angular-ui-notification-master/dist/angular-ui-notification.min.css">
+<link rel="stylesheet"
+	href="assets/angular-backtop-master/dist/angular-backtop.css">
+
+<link rel="stylesheet" href="assets/css/internal.css" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<link rel="stylesheet" href="assets/datetimepicker/css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="assets/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+
+<script src="assets/jquery/jquery-1.11.3.min.js"></script>
+<script src="assets/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="assets/jquery/jquery.blockUI.js"></script>
+<script src="assets/js/site.js"></script>
+
+</head>
+<body ng-controller="mainController" class="internal-layout">
+	<div class="header container-fluid hidden-xs" ng-show="showHeader">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2" style="background-color: #fff; height: 111px;">
+					<a href=""> <img id="logo" class="img-responsive"
+						style="margin-top: 5px;" src="assets/img/esilicon_logo-114x50.png"
+						title="eSilicon STAR" alt="eSilicon STAR" />
+					</a>
+				</div>
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-8"
+							style="background-color: #4a4a4c; height: 46px; padding: 0;">
+							<div class="navbar navbar-default navbar-main yamm">
+								<div class="navbar-header">
+									<button type="button" data-toggle="collapse"
+										data-target="#primary-navigation" class="navbar-toggle">
+										<span class="icon-bar"></span><span class="icon-bar"></span><span
+											class="icon-bar"></span>
+									</button>
+								</div>
+								<!-- star menu -->
+								<div id="primary-navigation"
+									class="navbar-primary navbar-collapse collapse in">
+									<ul class="nav navbar-nav">
+										<li class="dropdown active"><a href="javascript:;"
+											data-toggle="dropdown" class="dropdown-toggle">Site
+												Manager <b class="fa fa-caret-down"></b>
+										</a>
+											<ul class="dropdown-menu" id="siteManager">
+												<li>
+													<div class="yamm-content">
+														<div class="row">
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>Supplier FTPs</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="#/ftpSuppSite/viewAll">
+																			View all supplier FTPs</a></li>
+																	<li><i></i> <a href="#/ftpSuppSite/create">
+																			Create supplier FTP</a></li>
+																</ul>
+															</div>
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>Customer FTPs</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="#/ftpCusSite/viewAll">View
+																			all customer FTPs</a></li>
+																	<li><i></i> <a href="#/ftpCusSite/create">Create
+																			customer FTP</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul></li>
+										<li class="dropdown active"><a href="javascript:;"
+											data-toggle="dropdown" class="dropdown-toggle">Site
+												Monitoring <b class="fa fa-caret-down"></b>
+										</a>
+											<ul class="dropdown-menu" id="siteMonitor">
+												<li>
+													<div class="yamm-content">
+														<div class="row">
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>Connection Failure Alerts</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="#/connectionFailureAlerts">View all alerts</a></li>
+																</ul>
+															</div>
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>Data Missing Alerts</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="#/dataMissingAlerts">View all alerts</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul></li>
+										<li class="dropdown active"><a href="javascript:;"
+											data-toggle="dropdown" class="dropdown-toggle">Administration
+												<b class="fa fa-caret-down"></b>
+										</a>
+											<ul class="dropdown-menu" id="Admin">
+												<li>
+													<div class="yamm-content">
+														<div class="row">
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>System Info</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="">System Info</a></li>
+																</ul>
+															</div>
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>Control Panel</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="#/connectionMonitoring">Connection
+																			Monitoring</a></li>
+																	<li><i></i> <a href="#/fileMonitoring">File Monitoring</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul></li>
+										<li class="dropdown active"><a href="javascript:;"
+											data-toggle="dropdown" class="dropdown-toggle">User
+												Administration <b class="fa fa-caret-down"></b>
+										</a>
+											<ul class="dropdown-menu" id="UserAdmin">
+												<li>
+													<div class="yamm-content">
+														<div class="row">
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>User</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="#/usersAndRoles">Users and roles</a></li>
+																</ul>
+															</div>
+															<div class="col-xs-6">
+																<ul class="list-unstyled">
+																	<li><strong>Role</strong></li>
+																	<li class="divider"></li>
+																	<li><i></i> <a href="">View all roles</a></li>
+																	<li><i></i> <a href="">Assign Role</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- my profile -->
+						<div class="account-navigation col-md-4">
+							<div class="row">
+								<div class="col-md-10 col-sm-12 col-xs-12">
+									<div class="dropdown pull-right">
+										<a href="#/logout" class=" btn btn-link pull-right"
+											ng-click="logout()">Log out &nbsp;<i
+											class="fa fa-unlock-alt"></i>
+										</a> <a id="accountSettings"
+											class="btn btn-link pull-right dropdown-toggle"
+											data-toggle="dropdown" href="javascript:;"> Welcome,
+											{{currentUser}} &nbsp;<i class="fa fa-user"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<back-top scroll-speed=6ng-controller00 button-theme="light"></back-top>
+
+	<div
+		ng-class="{'container': !full_screen, 'container-fluid': full_screen}">
+		<div ng-view></div>
+
+		<!-- end ng-view -->
+		<div style="clear: both;"></div>
+	</div>
+
+
+
+	<!-- footer -->
+	<footer class="footer" ng-show="showHeader">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-sm-10 col-xs-12">
+					<span class="copy">&copy;2016 <a
+						href="https://www.esilicon.com">eSilicon Corporation</a>. All
+						rights reserved.
+					</span> <a class="hidden-xs" href="">Help</a> <span
+						class="hidden-xs separator"> | </span> <a class="hidden-xs"
+						href="">Feedback</a> <span class="hidden-xs separator">
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+	<script src="assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+	<script
+		src="assets/jQuery.mmenu-master/dist/core/js/jquery.mmenu.min.all.js"></script>
+
+	<script src="assets/angularjs/angular.min.js"></script>
+	<script src="assets/angularjs/angular-route.js"></script>
+	<script src="assets/angularjs/angular-route.min.js"></script>
+	<script src="assets/angularjs/angular-sanitize.min.js"></script>
+	<script src="assets/angularjs/angular-cookies.js"></script>
+	<script src="assets/angularjs/ui-bootstrap-tpls-0.9.0.min.js"></script>
+
+	<script src="assets/ng-table-master/dist/ng-table.js"></script>
+	<script src="assets/angular-xeditable-0.1.8/js/xeditable.js"></script>
+	<script src="assets/angular-xeditable-0.1.8/js/xeditable.min.js"></script>
+	<script src="assets/angularjs/angular-animate.js"></script>
+
+	<script
+		src="assets/angular-ui-notification-master/dist/angular-ui-notification.min.js"></script>
+	<script src="assets/angular-backtop-master/dist/angular-backtop.js"></script>
+	<script src="modules/angular-dynamicinclude.js"></script>
+	<script src="assets/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script src="assets/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="js/designskopeQ.js"></script>
+	<script src="js/appService.js"></script>
+	<script src="js/appFactory.js"></script>
+	<script src="js/designskopeFormFactory.js"></script>
+	<script src="js/authenticationService.js"></script>
+	<script src="js/mainController.js"></script>
+	<script src="js/confirmRedirIfChangedDirective.js"></script>
+	<script src="js/confirmRedirIfXeditChangedDirective.js"></script>
+	<script src="js/alertController.js"></script>
+	<script src="js/logoutController.js"></script>
+	<script src="js/usersAndRolesController.js"></script>
+	<script src="js/editRolesController.js"></script>
+
+
+</html>

@@ -1,0 +1,87 @@
+<div class="row">
+	<div class="col-xs-2">
+		<label for="name">Ftp site name</label>
+	</div>
+	<div class="col-xs-2">
+		<select id="name" class="form-control" ng-model="name"
+			ng-options="item for item in ftpsiteNames">
+			<option value="">All ftp sites</option>
+		</select>
+	</div>
+	<div class="col-xs-2"></div>
+	<div class="col-xs-1">
+		<label for="status">Status</label>
+	</div>
+	<div class="col-xs-2">
+		<select id="status" class="form-control" ng-model="status"
+			ng-options="item for item in statuses">
+			<option value="">All</option>
+		</select>
+	</div>
+	<div class="col-xs-2"></div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-xs-2">
+		<label for="from">From</label>
+	</div>
+	<div class="col-xs-2">
+		<div class="form-group">
+			<div class='input-group date' id='datetimepickerFrom'>
+				<input type='text' class="form-control" datetimepicker-directive
+					ng-model="fromDate" />
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-2"></div>
+	<div class="col-xs-1">
+		<label for="to">To</label>
+	</div>
+	<div class="col-xs-2">
+		<div class="form-group">
+			<div class='input-group date' id='datetimepickerTo'>
+				<input type='text' class="form-control" datetimepicker-directive
+					ng-model="toDate" />
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-2"></div>
+</div>
+
+<br>
+
+<div class="container">
+	<div class="row">
+		<table ng-table="alertTable" class="table ng-table-resizable-columns"
+			show-filter="false">
+			<tr ng-repeat="alert in $data">
+
+				<td data-title="'Name'" header-class="'text-left'" sortable="'name'">
+					{{alert.ftpsite.name}}</td>
+
+				<td data-title="'Host'" header-class="'text-left'" sortable="'host'">
+					{{alert.ftpsite.host}}</td>
+
+				<td data-title="'Path'" header-class="'text-left'" sortable="'path'">
+					{{alert.ftpsite.path}}</td>
+
+				<td data-title="'Alert Message'" header-class="'text-left'"
+					sortable="'alertMessage'">{{alert.message}}</td>
+
+				<td data-title="'Created Date'" header-class="'text-left'"
+					sortable="'createdDate'">{{alert.createdDate}}</td>
+
+
+			</tr>
+			<tr ng-if="!alerts_loaded">
+				<td align="center" colspan="10"><img
+					src="assets/img/loader.gif" /></td>
+			</tr>
+			<tr ng-if="alertTable.total() == 0 && alerts_loaded">
+				<td>No data found</td>
+			</tr>
+		</table>
+	</div>
+</div>
